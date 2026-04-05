@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: #F5F5F0;
+  --color-foreground: #111110;
+  --color-primary: #E63022;
+  --color-secondary: #F5C518;
+  --color-dark: #111110;
+  --color-muted: #888880;
+  --color-card: #FFFFFF;
+
+  --font-sans: var(--font-dm-sans), sans-serif;
+  --font-mono: var(--font-space-mono), monospace;
+}
+
+@layer base {
+  :root {
+    --background: #F5F5F0;
+    --foreground: #111110;
+  }
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+@layer utilities {
+  .vaultrix-border {
+    @apply border-2 border-dark rounded-[4px];
+  }
+  
+  .vaultrix-shadow {
+    box-shadow: 4px 4px 0px 0px rgba(17, 17, 16, 1);
+  }
+  
+  .vaultrix-shadow-hover {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .vaultrix-shadow-hover:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 6px 6px 0px 0px rgba(17, 17, 16, 1);
+  }
+
+  .shake-animation {
+    animation: shake 0.5s;
+  }
+
+  .pulse-border {
+    animation: borderPulse 1.5s infinite;
+  }
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  50% { transform: translateX(4px); }
+  75% { transform: translateX(-4px); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes borderPulse {
+  0% { border-color: var(--color-primary); }
+  50% { border-color: var(--color-secondary); }
+  100% { border-color: var(--color-primary); }
+}
+
+/* Page transitions */
+.page-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
